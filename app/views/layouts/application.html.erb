@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DeviseAndOmniauth</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <ul>
+        <% if user_signed_in? %>
+          <li>Welcome <%= current_user.email %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+        <!-- allows Brad to log in to his account -->
+          <li><%= link_to 'Login', new_user_session_path %></li>
+          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+      <%= yield %>
+    </div>
+
+  </body>
+</html>
